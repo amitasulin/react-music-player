@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Music from "../assets/musicback.jpg";
+import ProcessTracker from "../components/ProcessTracker";
 import {
   BiPauseCircle,
   BiPlayCircle,
@@ -26,6 +27,18 @@ export default function Player({
       audioRef.current.pause();
     }
   }, [isPlaying, currentIndex]);
+
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgress((prevProgress) =>
+        prevProgress < 100 ? prevProgress + 1 : 0
+      );
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
   return (
     <div>
       <audio ref={audioRef} src={currentSong.music}></audio>
@@ -72,6 +85,7 @@ export default function Player({
             onClick={nextSong}
           />
         </div>
+        <ProcessTracker progress={progress} />
       </div>
     </div>
   );

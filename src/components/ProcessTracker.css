@@ -1,0 +1,13 @@
+.process-tracker {
+    width: 100%;
+    height: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background-color: #3498db;
+    border-radius: 5px;
+  }
+  
